@@ -26,6 +26,8 @@
 
                     <% if !voted %>
                         <td><%= link_to 'Vote', election_path(election) %></td>
+                    <% else %>
+                        <td><%= link_to 'Modify Vote', election_path(election) %></td>
                     <% end %>
                 <% end %>
             </tr>
