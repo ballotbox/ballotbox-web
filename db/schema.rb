@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104215053) do
+ActiveRecord::Schema.define(version: 20150307181748) do
 
   create_table "choices", force: true do |t|
     t.string   "body"

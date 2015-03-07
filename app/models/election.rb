@@ -6,5 +6,5 @@ class Election < ActiveRecord::Base
     accepts_nested_attributes_for :choices, allow_destroy: true
     validates_uniqueness_of :random_id
 
-    attr_accessible :title, :text, :choices_attributes, :private
+    attr_accessible :title, :text, :choices_attributes, :private, :random_id
 end
