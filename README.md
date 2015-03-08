@@ -11,3 +11,5 @@ Features Implemented:
 * Basic navigation bar (via Bootstrap)
 * Basic voting (via the ActiveRecord Reputation System Gem)
 * Private/public voting differentiation
+
+ballot-box.herokuapp.com
