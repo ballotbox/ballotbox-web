@@ -31,18 +31,19 @@
         <%= f.check_box :private %>
     </div>
 
-    <h2>Choices</h2>
-    <%= f.fields_for :choices do |ff| %>
-        <div>
-            <%= ff.label :body %>
-            <%= ff.text_field :body %>
-
-            <% if ff.object.persisted? %>
-                <%= ff.check_box :_destroy %>
-                <%= ff.label :_destroy, 'Destroy' %>
-            <% end %>
-        </div>
-    <% end %>
+    <div id="choices">
+        <h2>Choices</h2>
+        <%= f.fields_for :choices do |ff| %>
+            <div>
+                <%= ff.text_field :body %>
+                <% if ff.object.persisted? %>
+                    <%= ff.check_box :_destroy %>
+                    <%= ff.label :_destroy, 'Destroy' %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    <button id="add_choice_field" type="button">+</button>
 
     <div>
         <%= f.submit %>
