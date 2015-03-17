@@ -1,0 +1,28 @@
+%h1 New Election
+= form_for @election do |f|
+  - if @election.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@election.errors.count, 'error')
+      %ul
+        - @election.errors.full_messages.each do |msg| 
+          %li
+            = msg
+  .input-group.input-group-lg
+    %span.input-group-addon
+    = f.text_field :title, class: 'form-control', placeholder: 'Title'
+  .input-group.input-group-lg
+    %span.input-group-addon
+    = f.text_area :text, class: 'form-control', placeholder: 'Description'
+  .input-group
+    Make Private?
+    %span.input-group-addon
+      = f.check_box :private
+  #choices
+    %h2 Choices
+    = f.fields_for :choices do |ff|
+      .input-group
+        %span.input-group-addon
+        = ff.text_field :body, class: 'form-control', placeholder: '...'
+  %button#add_choice_field.btn.btn-default{type: 'button'} Add Choice
+  = f.submit class: 'btn btn-default'
