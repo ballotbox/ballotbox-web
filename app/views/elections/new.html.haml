@@ -23,6 +23,9 @@
     = f.fields_for :choices do |ff|
       .input-group
         %span.input-group-addon
-        = ff.text_field :body, class: 'form-control', placeholder: '...'
-  %button#add_choice_field.btn.btn-default{type: 'button'} Add Choice
+        = ff.text_field :body, class: 'form-control choices', placeholder: '...'
+        %span.input-group-btn
+          %button.remove-choice-field.btn.btn-default{type: 'button'}
+            %section.glyphicon.glyphicon-remove
+  %button.add-choice-field.btn.btn-default{type: 'button'} Add Choice
   = f.submit class: 'btn btn-default'
