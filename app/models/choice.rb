@@ -1,8 +1,6 @@
 class Choice < ActiveRecord::Base
   belongs_to :election
+  has_and_belongs_to_many :voters, class: 'User'
+
   validates :body, presence: true
-
-  has_reputation :votes, source: :user, aggregated_by: :sum
-
-  attr_accessible :body
 end
