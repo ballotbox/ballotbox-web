@@ -1,6 +1,7 @@
 class Choice < ActiveRecord::Base
   belongs_to :election
-  has_and_belongs_to_many :voters, class: 'User'
+  has_many :votes
+  has_many :users, through: :votes
 
   validates :body, presence: true
 end

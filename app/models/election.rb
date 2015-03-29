@@ -1,5 +1,8 @@
 class Election < ActiveRecord::Base
-    has_many :choices
-    accepts_nested_attributes_for :choices, allow_destroy: true
-    validates_uniqueness_of :random_id
+  belongs_to :creator, class_name: 'User'
+  has_many :choices
+  has_many :votes, through: :choices
+  has_many :users, through: :votes, source: :user
+
+  accepts_nested_attributes_for :choices, allow_destroy: true
 end

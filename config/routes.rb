@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   resources :elections, param: :random_id do
       resources :choices do 
           member { post :vote }
