@@ -1,0 +1,17 @@
+%p
+  %strong Title:
+  = @election.title
+
+%p
+  %strong Text:
+  = @election.text
+
+%strong Choices:
+%ul
+  - for choice in @election.choices
+    %p
+      %strong #{choice.body}
+      \:
+      = pluralize choice.reputation_for(:votes).to_i, "vote"
+
+= link_to 'Back', elections_path

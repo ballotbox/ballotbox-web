@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :choices do 
           member { post :vote }
       end
+      get 'result'
   end
 
   root 'landing#index'

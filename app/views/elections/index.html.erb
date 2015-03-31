@@ -13,7 +13,7 @@
                 <td><%= election.title %></td>
                 <td><%= election.text %></td>
                 <% if current_user.email == election.creator %>
-                    <td><%= link_to 'Show', election_path(election) %></td>
+                    <td><%= link_to 'Show', election_result_path(election) %></td>
                     <td><%= link_to 'Edit', edit_election_path(election) %></td>
                     <td><%= link_to 'Destroy', election_path(election), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <% else %>

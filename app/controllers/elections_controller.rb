@@ -14,20 +14,26 @@ class ElectionsController < ApplicationController
         @election.random_id = (0...10).map{65.+(rand(26)).chr}.join
 
         if @election.save
-            redirect_to @election
+            redirect_to elections_path
         else
             render :action => 'new'
         end
     end
 
+    # Show election for normal users
     def show
         @election = Election.find_by_random_id(params[:random_id])
     end
 
+    # Show election for election owner
+    def result
+        @election = Election.find_by_random_id(params[:election_random_id])
+    end
+    
     def edit
         @election = Election.find_by_random_id(params[:random_id])
     end
-    
+
     def update
         @election = Election.find_by_random_id(params[:random_id])
 
