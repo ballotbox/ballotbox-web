@@ -31,6 +31,9 @@ gem 'spring',        group: :development
 
 gem 'devise'
 gem 'activerecord-reputation-system'
+
+# Gon allows easy access of Rails variables from JavaScript
+gem 'gon'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

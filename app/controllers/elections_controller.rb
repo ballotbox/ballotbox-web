@@ -28,6 +28,11 @@ class ElectionsController < ApplicationController
     # Show election for election owner
     def result
         @election = Election.find_by_random_id(params[:election_random_id])
+        gon.choices = {}
+        @election.choices.each do |choice|
+            gon.choices[choice.body] = choice.reputation_for(:votes).to_i
+            puts "Choice count: " + choice.reputation_for(:votes).to_i.to_s
+        end
     end
     
     def edit
