@@ -10,6 +10,10 @@ function getRandomColor() {
 window.onload = function() {
     var labels = [], values = [], data = [], colors = [], highlights = [];
 
+    for( var key in gon.choices ) {
+        console.log(key + ": " + gon.choices[key]);
+    }
+
     for( var label in gon.choices ) {
         if( gon.choices.hasOwnProperty(label) ) {
             labels.push( label );
