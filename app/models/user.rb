@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :votes
-  has_many :created_elections, class_name: 'Election', foreign_key: 'creator_id'
+  has_many :votes, dependent: :destroy
+  has_many :created_elections, class_name: 'Election', foreign_key: 'creator_id', dependent: :destroy
   has_many :elections, through: :votes
 
   def vote_for(election)
