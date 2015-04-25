@@ -1,6 +1,7 @@
 class ElectionsController < ApplicationController
   def index
-    @elections = Election.all
+    @elections = Election.not_private
+    @elections += current_user.created_elections if current_user
   end
 
   def new
@@ -9,7 +10,8 @@ class ElectionsController < ApplicationController
   end
 
   def create
-    @election = current_user.created_elections.new(election_params)
+    @election = Election.new(election_params)
+    @election.creator_id = current_user.id;
     if @election.save
       redirect_to @election
     else

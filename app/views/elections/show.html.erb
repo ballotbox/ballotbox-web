@@ -5,20 +5,20 @@
 
 <p>
     <strong>Text:</strong>
-    <%= @election.text %>
+    <%= @election.body %>
 </p>
 
 <strong>Choices:</strong>
 <ul>
     <% for choice in @election.choices %>
-        <% if current_user.email == @election.creator %>
+        <% if current_user && current_user == @election.creator %>
             <p>
-                <%= choice.body %>: <%= pluralize choice.reputation_for(:votes).to_i, "vote" %>
+                <%= choice.body %>: <%= pluralize choice.votes.count, "vote" %>
             </p>
         <% else %>
             <p>
                 <%= choice.body %>
-                <% if current_user && !choice.has_evaluation?(:votes, current_user) %>
+                <% if current_user && choice.chosen_by?(current_user) %>
                     | <%= link_to "Vote for this!", vote_election_choice_path(election_random_id: @election.random_id, id: choice.id, type: "up"), method: "post" %>
                 <% else %>
                     | <%= link_to "Cancel vote", vote_election_choice_path(election_random_id: @election.random_id, id: choice.id, type: "down"), method: "post" %>

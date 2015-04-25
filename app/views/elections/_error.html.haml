@@ -1,8 +1,8 @@
-  - if @election.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@election.errors.count, 'error')
-      %ul
-        - @election.errors.full_messages.each do |msg| 
-          %li
-            = msg
+- if @election.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@election.errors.count, 'error')
+    %ul
+      - @election.errors.full_messages.each do |msg| 
+        %li
+          = msg

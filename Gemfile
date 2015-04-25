@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'doorkeeper'
+gem 'devise'
 gem 'activerecord-reputation-system'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -43,3 +44,4 @@ gem 'activerecord-reputation-system'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'pry'

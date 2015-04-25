@@ -4,4 +4,8 @@ class Choice < ActiveRecord::Base
   has_many :users, through: :votes
 
   validates :body, presence: true
+
+  def chosen_by?(user)
+    votes.where(user_id: user.id).present?
+  end
 end
