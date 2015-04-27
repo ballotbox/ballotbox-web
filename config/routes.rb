@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
   use_doorkeeper
+  devise_for :users
 
   resources :elections do
     resources :choices, only: [:new, :create, :index] do
@@ -8,9 +8,15 @@ Rails.application.routes.draw do
     end
     resources :votes, only: [:index, :destroy]
   end
-
   resources :choices, only: [:destroy]
 
+  namespace :api do
+    namespace :v1 do
+      resources :elections do
+        resources :choices
+      end
+    end
+  end
 
   root 'landing#index'
 end
