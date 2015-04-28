@@ -17,3 +17,12 @@ ballot-box.herokuapp.com
 iOS Client: https://github.com/ballotbox/ballotbox-iOS
 
 Android Client: https://github.com/ballotbox/ballotbox-android
+
+Authorizing with the OAuth API
+
+    POST /oauth/token
+      client_id     = <client_id>
+      client_secret = <client_secret>
+      username      = <email>
+      password      = <password>
+      grant_type    = password
