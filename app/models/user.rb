@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :elections, through: :votes
 
   def vote_for(election)
-    votes.joins(:choices).where(choices: { user_id: id })
+    election.votes.where(user_id: self.id).first
   end
 
   def voted_in?(election)

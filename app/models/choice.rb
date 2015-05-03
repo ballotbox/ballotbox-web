@@ -5,7 +5,12 @@ class Choice < ActiveRecord::Base
 
   validates :body, presence: true
 
-  def chosen_by?(user)
-    votes.where(user_id: user.id).present?
+  def vote_for(user)
+    votes.where(user_id: user.id).first
   end
+
+  def chosen_by?(user)
+    vote_for(user).present?
+  end
+
 end

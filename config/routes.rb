@@ -3,17 +3,16 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :elections do
-    resources :choices, only: [:new, :create, :index] do
-      resources :votes, only: [:create]
-    end
-    resources :votes, only: [:index, :destroy]
+    #resources :choices, only: [:new, :create, :index]
+    #resources :votes, only: [:index]
   end
-  resources :choices, only: [:destroy]
+  resources :votes, only: [:create, :destroy]
+  #resources :choices, only: [:destroy]
 
   namespace :api do
     namespace :v1 do
       resources :elections
-      resources :choices
+      #resources :choices
       resources :votes
     end
   end
