@@ -1,23 +1,16 @@
 %h1 New Election
 = form_for @election do |f|
-  - if @election.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@election.errors.count, 'error')
-      %ul
-        - @election.errors.full_messages.each do |msg| 
-          %li
-            = msg
+  = render partial: 'error'
   .input-group.input-group-lg
     %span.input-group-addon
     = f.text_field :title, class: 'form-control', placeholder: 'Title'
   .input-group.input-group-lg
     %span.input-group-addon
-    = f.text_area :text, class: 'form-control', placeholder: 'Description'
+    = f.text_area :body, class: 'form-control', placeholder: 'Description'
   .input-group
-    Make Private?
+    Make Public?
     %span.input-group-addon
-      = f.check_box :private
+      = f.check_box :public
   #choices
     %h2 Choices
     = f.fields_for :choices do |ff|

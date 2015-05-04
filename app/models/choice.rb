@@ -1,8 +1,16 @@
 class Choice < ActiveRecord::Base
   belongs_to :election
+  has_many :votes, dependent: :destroy
+  has_many :users, through: :votes
+
   validates :body, presence: true
 
-  has_reputation :votes, source: :user, aggregated_by: :sum
+  def vote_for(user)
+    votes.where(user_id: user.id).first
+  end
 
-  attr_accessible :body
+  def chosen_by?(user)
+    vote_for(user).present?
+  end
+
 end

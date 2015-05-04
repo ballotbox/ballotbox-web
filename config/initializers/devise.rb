@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = 'a3098db79b4115a031d3f4948e4ae63628cfd6bc390aff7f998ec4587e995f3d34b683a73e3ae2e428e69d2ce24e12ce269d2d7b621ec2ba46a823de2a8200d5'
+  # config.secret_key = 'b766fddc084843f01f6b358cb1d47cf0b275cae9ee12a6a26e12a1dc2a6b7e1d6e40424e8a3e22fa1001c7e4c24ad0e109960a42b7207c335257b28d9a116530'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -36,7 +36,7 @@ Devise.setup do |config|
   # find_for_authentication method and considered in your model lookup. For instance,
   # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.
   # The same considerations mentioned for authentication_keys also apply to request_keys.
-  # config.request_keys = []
+  # config.request_keys = [:email, :password, :password_confirmation]
 
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
@@ -52,7 +52,7 @@ Devise.setup do |config|
   # It can be set to an array that will enable params authentication only for the
   # given strategies, for example, `config.params_authenticatable = [:database]` will
   # enable it only for database (email + password) authentication.
-  # config.params_authenticatable = true
+  config.params_authenticatable = true
 
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '35a4f50cfc089e91df5fb8ff124b001ad586392a404d9c30bddab835c11a9cdc24eb4ed22da9cadcaa51517f4a603d4787f11aead6099e49d21febe5d08f58a3'
+  # config.pepper = 'fd05dc7dd4749606711c9865e942209fca255025ec1afb835f214ce1f004048966c93e76dfc56ce9091c92a6ce9ddb9f006fd2cdab84ba0daa5b57c18bac34fe'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without

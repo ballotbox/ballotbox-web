@@ -1,10 +1,10 @@
 class Election < ActiveRecord::Base
-    def to_param
-        random_id
-    end
-    has_many :choices
-    accepts_nested_attributes_for :choices, allow_destroy: true
-    validates_uniqueness_of :random_id
+  belongs_to :creator, class_name: 'User'
+  has_many :choices, dependent: :destroy
+  has_many :votes, through: :choices
+  has_many :users, through: :votes, source: :user
 
-    attr_accessible :title, :text, :choices_attributes, :private, :random_id
+  scope :not_private, -> { where(public: true) }
+
+  accepts_nested_attributes_for :choices, allow_destroy: true
 end
