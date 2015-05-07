@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
   has_many :created_elections, class_name: 'Election', foreign_key: 'creator_id', dependent: :destroy
   has_many :elections, through: :votes
 
+  def admin?
+    return Admin.where(user_id: self.id).present?
+  end
+
+  def make_admin!
+    Admin.create(user_id: self.id) unless admin?
+  end
+
   def vote_for(election)
     election.votes.where(user_id: self.id).first
   end

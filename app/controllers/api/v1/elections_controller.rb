@@ -3,7 +3,7 @@ module Api::V1
     before_action :doorkeeper_authorize!
 
     def index
-      render json: { elections: (Election.not_private + current_resource_owner.created_elections) }
+      render json: { elections: (Election.not_private + current_resource_owner.created_elections).uniq }
     end
 
     def show
@@ -26,7 +26,7 @@ module Api::V1
       params[:election][:choices].each do |c|
         election.choices.create! do |choice|
           choice.body        = c[:body]
-          choice.election_id = election.id 
+          choice.election_id = election.id
         end
       end
       redirect_to api_v1_election_path(election), status: 201
