@@ -36,6 +36,19 @@ class ElectionsController < ApplicationController
     end
   end
 
+    # Show election for election owner
+    def result
+        @election = Election.find(params[:id])
+        @choices = @election.choices.all
+        @choices = @choices.sort {|b,a| a.choice.votes <=> b.choice.votes}
+
+        gon.choices = {}
+        @choices.each do |choice|
+            gon.choices[choice.body] = choice.votes.to_i
+            puts choice.body + ": " + choice.votes.to_s
+        end
+    end
+    
   def destroy
     @election = Election.id(params[:id])
     @election.destroy

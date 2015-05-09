@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :elections do
     #resources :choices, only: [:new, :create, :index]
     #resources :votes, only: [:index]
+    get 'result'
   end
   resources :votes, only: [:create, :destroy]
   #resources :choices, only: [:destroy]

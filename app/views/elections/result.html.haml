@@ -1,0 +1,22 @@
+- content_for :head do
+  = javascript_include_tag "/result"
+
+%p
+  %strong Title:
+  = @election.title
+
+%p
+  %strong Text:
+  = @election.text
+
+%strong Choices:
+%ul
+  - for choice in @choices
+    %p
+      %strong #{choice.body}
+      \:
+      = pluralize choice.reputation_for(:votes).to_i, "vote"
+
+%canvas(id="resultGraph" width=200 height=200)
+
+= link_to 'Back', elections_path
