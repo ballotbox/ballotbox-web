@@ -32,5 +32,13 @@ module Api::V1
       redirect_to api_v1_election_path(election), status: 201
     end
 
+    def destroy
+      election = current_resource_owner.created_elections.find(params[:id])
+      if election.destroy
+        head :ok
+      else
+        head :bad_request
+      end
+    end
   end
 end

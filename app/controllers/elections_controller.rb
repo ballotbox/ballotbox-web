@@ -2,6 +2,7 @@ class ElectionsController < ApplicationController
   def index
     @elections = Election.not_private
     @elections += current_user.created_elections if current_user
+    @elections.uniq!
   end
 
   def new
