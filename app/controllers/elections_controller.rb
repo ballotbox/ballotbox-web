@@ -11,7 +11,7 @@ class ElectionsController < ApplicationController
 
   def create
     @election = Election.new(election_params)
-    @election.creator_id = current_user.id;
+    @election.creator_id = current_user.id
     if @election.save
       redirect_to @election
     else
@@ -38,19 +38,19 @@ class ElectionsController < ApplicationController
 
     # Show election for election owner
     def result
-        @election = Election.find(params[:id])
+        @election = Election.find(params[:election_id])
         @choices = @election.choices.all
-        @choices = @choices.sort {|b,a| a.choice.votes <=> b.choice.votes}
+        @choices = @choices.sort {|b,a| a.votes.count <=> b.votes.count}
 
         gon.choices = {}
         @choices.each do |choice|
-            gon.choices[choice.body] = choice.votes.to_i
-            puts choice.body + ": " + choice.votes.to_s
+            gon.choices[choice.body] = choice.votes.count.to_i
+            puts choice.body + ": " + choice.votes.count.to_s
         end
     end
     
   def destroy
-    @election = Election.id(params[:id])
+    @election = Election.find(params[:id])
     @election.destroy
     redirect_to elections_path
   end

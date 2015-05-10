@@ -56,13 +56,13 @@ GEM
       railties (>= 3.2)
     erubis (2.7.0)
     execjs (2.5.2)
-    haml (4.0.6)
     gon (5.2.3)
       actionpack (>= 2.3.0)
       json
       multi_json
       request_store (>= 1.0.5)
       tilt
+    haml (4.0.6)
     haml-rails (0.9.0)
       actionpack (>= 4.0.1)
       activesupport (>= 4.0.1)
@@ -121,11 +121,11 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    request_store (1.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     ruby_parser (3.6.6)
       sexp_processor (~> 4.1)
-    request_store (1.1.0)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)

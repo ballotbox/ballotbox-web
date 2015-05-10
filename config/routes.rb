@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :elections do
+    get 'result'
     #resources :choices, only: [:new, :create, :index]
     #resources :votes, only: [:index]
-    get 'result'
   end
   resources :votes, only: [:create, :destroy]
   #resources :choices, only: [:destroy]

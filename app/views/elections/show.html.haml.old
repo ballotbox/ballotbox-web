@@ -4,7 +4,7 @@
 
 %p
   %strong Text:
-  = @election.text
+  = @election.body
 
 %strong Choices:
 %ul

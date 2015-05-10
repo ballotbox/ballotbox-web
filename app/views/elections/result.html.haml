@@ -7,7 +7,7 @@
 
 %p
   %strong Text:
-  = @election.text
+  = @election.body
 
 %strong Choices:
 %ul
@@ -15,7 +15,7 @@
     %p
       %strong #{choice.body}
       \:
-      = pluralize choice.reputation_for(:votes).to_i, "vote"
+      = pluralize choice.votes.count.to_i, "vote"
 
 %canvas(id="resultGraph" width=200 height=200)
 
