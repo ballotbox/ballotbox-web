@@ -1,24 +1,32 @@
-%h1 New Election
-= form_for @election do |f|
-  = render partial: 'error'
-  .input-group.input-group-lg
-    %span.input-group-addon
-    = f.text_field :title, class: 'form-control', placeholder: 'Title'
-  .input-group.input-group-lg
-    %span.input-group-addon
-    = f.text_area :body, class: 'form-control', placeholder: 'Description'
-  .input-group
-    Make Public?
-    %span.input-group-addon
-      = f.check_box :public
-  #choices
-    %h2 Choices
-    = f.fields_for :choices do |ff|
-      .input-group
-        %span.input-group-addon
-        = ff.text_field :body, class: 'form-control choices', placeholder: '...'
-        %span.input-group-btn
-          %button.remove-choice-field.btn.btn-default{type: 'button'}
-            %section.glyphicon.glyphicon-remove
-  %button.add-choice-field.btn.btn-default{type: 'button'} Add Choice
-  = f.submit class: 'btn btn-default'
+%div.container-fluid
+  %div.row
+    %div.col-md-6.col-md-offset-3
+      = link_to elections_path do
+        %button.btn.btn-default(type="button" aria-label="Left Align")
+          %span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+            %strong Back
+
+      %h1 New Election
+      = form_for @election do |f|
+        = render partial: 'error'
+        %div.form-group
+          = f.text_field :title, class: 'form-control', placeholder: 'Title'
+        %div.form-group
+          = f.text_area :body, class: 'form-control', placeholder: 'Description'
+        %div.checkbox
+          = f.label :public, class: "checkbox" do
+            = f.check_box :public
+            Make Public?
+        #choices
+          %h2 Choices
+          = f.fields_for :choices do |ff|
+            .input-group
+              %span.input-group-addon
+              = ff.text_field :body, class: 'form-control choices', placeholder: '...'
+              %span.input-group-btn
+                %button.remove-choice-field.btn.btn-default{type: 'button'}
+                  %section.glyphicon.glyphicon-remove
+        %button.add-choice-field.btn.btn-default{type: 'button'} Add Choice
+        %br
+        %br 
+        = f.submit class: 'btn btn-block btn-info'

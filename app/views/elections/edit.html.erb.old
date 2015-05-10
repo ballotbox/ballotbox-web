@@ -11,14 +11,14 @@
             </ul>
         </div>
     <% end %>
-    <% if current_user.email == @election.creator %>
+    <% if current_user.id == @election.creator_id %>
         <p>
             <%= f.label :title %><br />
             <%= f.text_field :title %>
         </p>
         <p>
-            <%= f.label :text %><br />
-            <%= f.text_area :text %>
+            <%= f.label :body %><br />
+            <%= f.text_area :body %>
         </p>
         <h2>Choices</h2>
         <%= f.fields_for :choices do |ff| %>

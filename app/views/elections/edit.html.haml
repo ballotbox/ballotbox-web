@@ -1,0 +1,55 @@
+
+%div.container-fluid
+  %div.row
+    %div.col-md-6.col-md-offset-3
+      = link_to elections_path do
+        %button.btn.btn-default(type="button" aria-label="Align-Left")
+          %span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+            %strong Back
+
+      %h1 Edit Election
+      = form_for @election do |f|
+        - if @election.errors.any?
+          %div{:id => "error_explanation"}
+            %h2
+              -
+              = pluralize(@election.errors.count, 'error') 
+              prohibited this article from being saved:
+              %ul
+                - @election.errors.full_messages.each do |msg|
+                  %li
+                    = msg 
+
+        - if current_user.id == @election.creator_id
+          %div.form-group
+            = f.label :title, class: "h3"
+            %br
+            = f.text_field :title, class: "form-control"
+          %div.form-group
+            = f.label :body, class: "h3"
+            %br
+            = f.text_area :body, class: "form-control"
+
+          #choices
+            %h3
+              Choices
+            - if @election.choices.select{|choice| choice.votes.count != 0}.empty?
+              = f.fields_for :choices do |ff|
+                .input-group
+                  %span.input-group-addon
+                  = ff.text_field :body, class: "form-control choices", placeholder: "..."
+                  %span.input-group-btn
+                    %button.remove-choice-field.btn.btn-default{type: 'button'}
+                      %section.glyphicon.glyphicon-remove
+            - else
+              %p
+                Votes have already been submitted. If you need to change the vote choices,
+                you must create a new election.
+          - if @election.choices.select{|choice| choice.votes.count != 0}.empty?
+            %button.add-choice-field.btn.btn-default{type: 'button'} Add Choice
+          %br
+          %br
+          = f.submit "Update", class: "btn btn-block btn-info"
+        - else
+          %p
+            You can't edit an election you don't own!

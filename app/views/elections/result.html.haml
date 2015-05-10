@@ -1,22 +1,51 @@
 - content_for :head do
   = javascript_include_tag "/result"
 
-%p
-  %strong Title:
+= link_to elections_path do
+  %button.btn.btn-default(type="button" aria-label="Left Align")
+    %span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+      %strong Back
+
+%h2
   = @election.title
 
-%p
-  %strong Text:
-  = @election.body
+%h3
+  %small
+    = @election.body
 
-%strong Choices:
-%ul
-  - for choice in @choices
-    %p
-      %strong #{choice.body}
-      \:
-      = pluralize choice.votes.count.to_i, "vote"
+%div{:class => "container"}
+  %div{:class => "row"}
+    %div{:class => "col-md-6"}
+      %table{:class => "table", :id => "choices_table"}
+        %thead
+          %th 
+            Choice:
+          %th
+            \# of Votes
+        - for choice in @choices
+          %tr
+            %td
+              %strong #{choice.body}
+            %td
+              = pluralize choice.votes.count.to_i, "vote"
+    %div{:class => "col-md-1"}
+    %div{:class => "col-md-5"}
+      %h4
+        Leading:
+        - if @choices.select{|choice| choice.votes.count != 0}.empty?
+          None (No votes have been received)
+        - else
+          = @choices[0].body
+      %table{:class => "table", :id => "stat_table"}
+        %tr{:style => "text-align: center"}
+          %td.danger{:id => "stat_two_thirds"}
+            Two-thirds majority
+        %tr{:style => "text-align: center"}
+          %td.danger{:id => "stat_three_fifths"}
+            Three-fifths majority
+        %tr{:style => "text-align: center"}
+          %td.danger{:id => "stat_majority"}
+            Simple majority
+      %br
+      %canvas(id="resultGraph" width=200 height=200)
 
-%canvas(id="resultGraph" width=200 height=200)
-
-= link_to 'Back', elections_path

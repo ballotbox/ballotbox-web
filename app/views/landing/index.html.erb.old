@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2 style="text-align: center">Welcome to BallotBox!</h2>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="center-block", style="width:30%;">
+            <%= link_to 'View Public Votes', elections_path, class: "btn btn-block btn-info" %>
+        </div>
+    </div>
+</div>

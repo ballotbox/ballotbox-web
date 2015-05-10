@@ -7,7 +7,7 @@ class ElectionsController < ApplicationController
 
   def new
     @election = Election.new
-    3.times { @election.choices.build }
+    2.times { @election.choices.build }
   end
 
   def create

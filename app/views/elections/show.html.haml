@@ -1,0 +1,31 @@
+= link_to elections_path do
+  %button.btn.btn-default(type="button" aria-label="Align Left")
+    %span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+      %strong Back
+
+%h2(style="word-wrap: break-word")
+  = @election.title
+
+%h3(style="word-wrap: break-word")
+  %small
+    = @election.body
+
+%div.container-fluid
+  %div.row
+    %div.col-md-8.col-md-offset-2
+      %table.table
+        %thead
+          %th
+            Choice
+          %th
+            Action
+        - for choice in @election.choices
+          - vote = choice.vote_for(current_user)
+          %tr
+            %td
+              %strong #{choice.body}
+            %td
+              - unless vote.present?
+                = link_to "Vote for this!", votes_path(choice_id: choice.id), method: :post, class: "btn btn-primary"
+              - else
+                = link_to "Cancel vote", vote_path(vote), method: :delete, class: "btn btn-primary"

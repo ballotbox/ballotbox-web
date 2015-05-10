@@ -1,0 +1,44 @@
+%div.container-fluid
+  %div.row
+    %h1(style="text-align: center") Open elections
+
+%br
+
+%div.container-fluid
+  %div.row
+    %div.col-md-8.col-md-offset-2
+      %table.table(id="list-table")
+        %thead
+          %th Title
+          %th Description
+          %th Actions
+        - @elections.each do |election|
+          %tr
+            %td
+              = election.title
+            %td
+              = election.body
+            - if current_user && current_user.id == election.creator_id
+              %td
+                %div.btn-group
+                  = link_to "Show", election_result_path(election), class: "btn btn-primary"
+                  = link_to "Edit", edit_election_path(election), class: "btn btn-primary"
+                  = link_to "Destroy", election_path(election), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+            - else
+              - if !current_user
+                %td
+                  = link_to 'Login to vote', "/users/sign_in"
+              - else
+                - voted = current_user.voted_in?(election)
+                - if !voted
+                  %td
+                    = link_to 'Vote', election_path(election)
+                - else
+                  %td
+                    = link_to 'Modify Vote', election_path(election)
+%br
+%br
+%div.container-fluid
+  %div.row
+    %div.center-block(style="width:20%;")
+      = link_to 'Create a New Election', new_election_path, class: "btn btn-info btn-block"
