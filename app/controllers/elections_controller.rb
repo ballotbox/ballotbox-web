@@ -14,7 +14,7 @@ class ElectionsController < ApplicationController
     @election = Election.new(election_params)
     @election.creator_id = current_user.id
     if @election.save
-      redirect_to @election
+      redirect_to election_result_path(@election)
     else
       render :action => 'new'
     end
