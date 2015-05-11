@@ -6,7 +6,7 @@
 
 %div.container-fluid
   %div.row
-    %div.col-md-8.col-md-offset-2
+    %div.col-md-10.col-md-offset-1
       %table.table(id="list-table")
         %thead
           %th Title
@@ -27,15 +27,15 @@
             - else
               - if !current_user
                 %td
-                  = link_to 'Login to vote', "/users/sign_in"
+                  = link_to 'Login to vote', "/users/sign_in", class: "btn btn-danger"
               - else
                 - voted = current_user.voted_in?(election)
                 - if !voted
                   %td
-                    = link_to 'Vote', election_path(election)
+                    = link_to 'Vote', election_path(election), class: "btn btn-primary"
                 - else
                   %td
-                    = link_to 'Modify Vote', election_path(election)
+                    = link_to 'Modify Vote', election_path(election), class: "btn btn-info"
 %br
 %br
 %div.container-fluid

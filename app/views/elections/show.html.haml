@@ -3,14 +3,15 @@
     %span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
       %strong Back
 
-%h2(style="word-wrap: break-word")
-  = @election.title
-
-%h3(style="word-wrap: break-word")
-  %small
-    = @election.body
-
 %div.container-fluid
+  %div.row
+    %h2(style="word-wrap: break-word")
+      = @election.title
+
+    %h3(style="word-wrap: break-word")
+      %small
+        = @election.body
+
   %div.row
     %div.col-md-8.col-md-offset-2
       %table.table

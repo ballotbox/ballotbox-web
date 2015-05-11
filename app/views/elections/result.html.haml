@@ -6,14 +6,15 @@
     %span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
       %strong Back
 
-%h2
-  = @election.title
-
-%h3
-  %small
-    = @election.body
-
 %div{:class => "container"}
+  %div.row
+    %h2{style: "word-wrap: break-word"}
+      = @election.title
+
+    %h3{style: "word-wrap: break-word"}
+      %small
+        = @election.body
+    
   %div{:class => "row"}
     %div{:class => "col-md-6"}
       %table{:class => "table", :id => "choices_table"}
